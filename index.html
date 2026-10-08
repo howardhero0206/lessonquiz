@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>整課評量 詳解｜B5 L2+L3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7EBEE; --card:#FDFDFC;
+  --ink:#10202F; --ink-2:#56687A; --ink-3:#7C8B99;
+  --rule:#C6D0D8; --pen:#17457E; --hl:#FFE773; --miss:#A34234;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace;
+  --read:'Literata',Georgia,'Times New Roman',serif;
+  --han:'PingFang TC','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--han);font-size:16px;line-height:1.75}
+:focus-visible{outline:2px solid var(--pen);outline-offset:3px;border-radius:2px}
+
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px 0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.title{font-size:23px;font-weight:600;margin:0;line-height:1.3}
+.meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin:4px 0 0;letter-spacing:.04em}
+.bar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:12px 0 11px;margin-top:10px;border-top:1px solid var(--rule)}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;border:1px solid var(--rule);background:transparent;color:var(--ink-2);padding:5px 10px;border-radius:999px;cursor:pointer;text-decoration:none;transition:border-color .15s,color .15s,background .15s}
+.chip:hover{border-color:var(--pen);color:var(--pen)}
+.chip.solid{margin-left:auto;border-color:var(--ink);color:var(--ink);font-weight:500}
+.chip.solid:hover{background:var(--ink);color:var(--card)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:28px 24px 96px;display:grid;gap:36px;grid-template-columns:minmax(0,1fr) 288px}
+@media (max-width:1020px){.wrap{grid-template-columns:minmax(0,1fr);gap:44px}}
+
+.sec{margin:0 0 48px;scroll-margin-top:136px}
+.sec-head{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
+.sec-label{font-size:18px;font-weight:600;margin:0}
+.sec-score{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-left:auto}
+.sec-inst{font-size:13.5px;color:var(--ink-2);margin:9px 0 0}
+
+.bank{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0 0}
+@media (max-width:760px){.bank{grid-template-columns:repeat(2,1fr)}}
+.bank-i{background:var(--card);padding:8px 10px;font-family:var(--read);font-size:14.5px}
+.bank-i span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-right:5px}
+.bank-i.used{background:#F2F5F6;color:var(--ink-3)}
+
+.passage{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);padding:22px 26px;margin:18px 0 0;font-family:var(--read);font-size:16.5px;line-height:1.95;color:#1a2836}
+.passage p{margin:0 0 1em}
+.passage p:last-child{margin-bottom:0}
+.blank{display:inline-block;min-width:70px;text-align:center;border:0;border-bottom:1.5px solid var(--ink);font-family:var(--mono);font-size:13px;color:var(--pen);cursor:pointer;background:none;padding:0 4px;line-height:1.4}
+.blank:hover{background:rgba(23,69,126,.07)}
+.blank.filled{font-family:var(--read);font-size:16.5px;color:var(--ink);border-bottom-color:transparent;min-width:0}
+.blank sup{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-right:2px}
+.zhbtn{display:block;margin:0 0 18px;background:var(--card);border:1px solid var(--rule);border-top:0;width:100%;text-align:left;padding:8px 26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--pen);cursor:pointer}
+.zhbtn:hover{color:var(--ink)}
+.zhbtn::after{content:' ▾'}
+.zhbtn.on::after{content:' ▴'}
+.zhbox{display:none;background:#F7F9FA;border:1px solid var(--rule);border-top:0;padding:18px 26px;margin:0 0 18px;font-size:15px;line-height:1.95;color:#22323F}
+.zhbox.on{display:block}
+.zhbox p{margin:0 0 .9em}
+.zhbox p:last-child{margin:0}
+
+.q{background:var(--card);border:1px solid var(--rule);margin:14px 0 0;scroll-margin-top:142px}
+.q-top{padding:16px 22px 14px}
+.q-tag{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.q-n{font-family:var(--mono);font-size:13px;font-weight:600}
+.q-kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.prompt{font-size:14.5px;line-height:1.85;color:var(--ink-2);margin:0 0 11px;padding-left:11px;border-left:2px solid var(--rule)}
+.stem{font-family:var(--read);font-size:16.5px;line-height:1.85;margin:0 0 13px;color:#1a2836}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}
+@media (max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:9px;font-family:var(--read);font-size:15.5px;line-height:1.6;padding:3px 0;color:#243342}
+.opt-k{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:2px;flex:none}
+.reveal{display:block;width:100%;text-align:left;margin-top:14px;background:none;border:0;border-top:1px dashed var(--rule);padding:11px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--pen);cursor:pointer}
+.reveal:hover{color:var(--ink)}
+.reveal::after{content:' ▾'}
+.q.open .reveal::after{content:' ▴'}
+.q.open .reveal{color:var(--ink-3)}
+
+.body{display:none;border-top:1px solid var(--rule);background:#F7F9FA;padding:18px 22px 20px}
+.q.open .body{display:block}
+.ans{display:flex;align-items:baseline;gap:10px;margin:0 0 13px;flex-wrap:wrap}
+.ans-k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3);flex:none;padding-top:2px}
+.ans-v{font-family:var(--read);font-size:18px;font-weight:600}
+.fills{list-style:none;margin:0 0 13px;padding:0}
+.fill{display:flex;gap:11px;align-items:baseline;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.fill-k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);flex:none;width:26px}
+.fill-w{font-family:var(--read);font-size:17px;font-weight:600;flex:none}
+.fill-n{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.zh{font-size:15px;line-height:1.85;margin:0 0 14px;color:#22323F}
+.why{font-size:14.5px;line-height:1.85;margin:0 0 4px;color:#22323F;border-top:1px solid var(--rule);padding-top:12px}
+.lines{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.line{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.75;color:var(--ink-2)}
+.line-k{font-family:var(--mono);font-size:12.5px;flex:none;width:28px;color:var(--ink-3);padding-top:2px}
+.line.right{color:var(--ink)}
+.line.right .line-k{color:var(--ink);font-weight:600}
+.line.right .line-k::after{content:'✓';display:block;font-size:12px;line-height:1.3}
+.line.wrong .line-k{color:var(--miss);opacity:.85}
+.line.wrong .line-k::after{content:'✗';display:block;font-size:12px;line-height:1.3}
+.evid{margin:15px 0 0;font-family:var(--read);font-size:14.5px;line-height:1.8;color:var(--ink-2);padding-left:13px;border-left:2px solid var(--hl)}
+.evid span{font-family:var(--han);font-size:11px;letter-spacing:.14em;color:var(--ink-3);display:block;margin-bottom:3px}
+
+.hl{background-image:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 90%,transparent 90%);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .55s cubic-bezier(.2,.75,.3,1);border-radius:1px}
+.hl.on{background-size:100% 100%}
+
+.sample{margin:15px 0 0;border:1px solid var(--rule);border-left:3px solid var(--ink);background:var(--card);padding:16px 20px}
+.sample p:not(.note-h){font-family:var(--read);font-size:15.5px;line-height:1.9;color:#1a2836;margin:0 0 1em}
+.sample p:last-child{margin-bottom:0}
+.bank.wide{grid-template-columns:1fr}
+.bank.wide .bank-i{font-size:15px;line-height:1.7;padding:10px 14px}
+.note{margin:15px 0 0;border:1px solid var(--rule);background:var(--card);padding:13px 16px}
+.note-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 9px}
+.note-i{margin:0;padding:9px 0 0;border-top:1px dotted var(--rule)}
+.note-i:first-of-type{border-top:0;padding-top:0}
+.term{font-family:var(--read);font-size:16px;font-weight:600}
+.pos{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin:0 6px}
+.gloss{font-size:14.5px}
+.ex{font-family:var(--read);font-size:14px;color:var(--ink-2);line-height:1.7;margin:3px 0 0;display:block}
+.ex i{font-family:var(--han);font-style:normal;font-size:13px;color:var(--ink-3);display:block}
+
+.side{position:sticky;top:136px;align-self:start;max-height:calc(100vh - 164px);overflow:auto;padding-right:4px}
+@media (max-width:1020px){.side{position:static;max-height:none;scroll-margin-top:136px}}
+.side-h{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px}
+.side-t{font-size:16px;font-weight:600;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.card-list{margin:0;padding:0;list-style:none}
+.card-item{border-bottom:1px solid var(--rule);padding:11px 0}
+.card-item a{display:block;text-decoration:none;color:inherit}
+.card-item a:hover .term{background:var(--hl)}
+.jump{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);float:right;padding-top:5px}
+.side-note{font-size:12.5px;color:var(--ink-3);line-height:1.7;margin:16px 0 0}
+.foot{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  .top,.side,.reveal,.foot,.zhbtn{display:none!important}
+  .wrap{display:block;max-width:none;padding:0}
+  .q .body{display:block!important}
+  .zhbox{display:block!important}
+  .q{break-inside:avoid;border-color:#999;margin-bottom:9pt}
+  .passage{break-inside:avoid}
+  .hl{background-size:100% 100%!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <p class="eyebrow" id="brand"></p>
+    <h1 class="title" id="examTitle"></h1>
+    <p class="meta" id="examMeta"></p>
+    <nav class="bar" id="nav"></nav>
+  </div>
+</header>
+
+<div class="wrap"><main id="main"></main><aside class="side" id="side"></aside></div>
+<p class="foot" id="foot"></p>
+
+<script>
+/* ==========================================================================
+   ①  題目與詳解全部寫在下面的 EXAM 物件裡。要改題、加題、修字，只動這裡。
+
+   section（大題）：{ id, label, score, instruction, bank?, groups: [...] }
+   group（同一篇文章的題組）：{ passage?, zh?, questions: [...] }
+       passage 裡寫 __7__ 就會變成可點的空格，數字對應題號。
+       zh 是全文中譯，會做成可展開的按鈕。
+
+   question 依題型三選一：
+     選擇題   { n, kind, stem, options:{A..D}, answer:"B", translation, explain:{A..D}, evidence?, notes? }
+     單一填答 { n, kind, stem, answerText:"prejudice", why, notes? }
+     多格填答 { n, kind, prompt, stem, answers:[{k:"①", w:"字", note:"說明"}], notes? }
+   ========================================================================== */
+const EXAM = {
+  brand: "L2+L3整課評量",
+  title: "整課評量 詳解｜B5 L2+L3",
+  meta: "Instructor: Howard Chang　·　範圍：B5 L2+L3",
+  footer: "KGHS 115-1 B5 L2+L3",
+  sections: [
+  {
+    id:"mc", label:"一、單字選擇", score:"20% · 每題 2%",
+    instruction:"選出最適合句意的一個選項。答案：C B C D A　C A B D C",
+    groups:[{
+      questions:[
+        { n:1, kind:"名詞",
+          stem:"The newspaper's ______ was so damaged after the scandal that even its accurate reports were dismissed by readers as mere propaganda.",
+          options:{A:"validity 有效性、正當性",B:"objective 目標、目的",C:"credibility 公信力、可信度",D:"strategy 策略"}, answer:"C",
+          translation:"這家報社在醜聞之後公信力嚴重受損，以致連它準確的報導都被讀者當成純粹的宣傳而不予採信。",
+          explain:{
+            A:"validity 意為「（論證、契約、證件的）有效性、正當性」，談的是某個東西在形式或邏輯上站不站得住腳，而非一個機構在大眾心中的信賴度。",
+            B:"objective 當名詞是「目標」，當形容詞是「客觀的」。本句空格前有所有格 The newspaper's，要填名詞；但「目標受損」無法導致讀者不相信它的報導。",
+            C:"credibility 意為「公信力、可信度」。線索是 so ... that 的結果子句：even its accurate reports were dismissed by readers as mere propaganda（連準確的報導都被當成宣傳），讀者不再相信它說的話，受損的正是公信力。",
+            D:"strategy 意為「策略」，指做事的方法與布局；策略失敗不會讓讀者連事實報導都不信。"
+          },
+          notes:[
+            {term:"credibility", pos:"n.", gloss:"公信力、可信度（adj. credible 可信的／credulous 輕信的）。常見搭配：lose／gain／damage one's credibility", ex:"The scandal destroyed his credibility as a leader.", exZh:"這場醜聞摧毀了他作為領導者的公信力。"},
+            {term:"dismiss A as B", pos:"句型", gloss:"把 A 當成 B 而不予理會（dismiss the report as propaganda）。"}
+          ]},
+
+        { n:2, kind:"動詞",
+          stem:"After being cheated by two business partners, my uncle is the last person to ______ trust to strangers who promise quick profits.",
+          options:{A:"shatter 使粉碎、使破滅",B:"extend 給予、施予（也指延長）",C:"verify 查證、核實",D:"constitute 構成"}, answer:"B",
+          translation:"在被兩位事業夥伴騙過之後，我叔叔是最不可能把信任交給那些承諾快速獲利的陌生人的。",
+          explain:{
+            A:"shatter 意為「使粉碎、使（希望、信任）破滅」，受詞雖然可以是 trust，但搭配的介系詞不是 to；而且 shatter trust 是「破壞（既有的）信任」，與本句「把信任交給某人」的方向不同。",
+            B:"extend 除了「延長」之外，還有「給予、施予（信任、善意、邀請、援手）」的用法，固定搭配是 extend sth to sb。空格後的介系詞 to 是關鍵結構線索，而 After being cheated by two business partners（被兩位夥伴騙過）則說明他不會再輕易把信任交出去。",
+            C:"verify 意為「查證、核實」，受詞是資訊或說法（verify a claim）；而且 verify 後面不接 to sb 的結構。",
+            D:"constitute 意為「構成」，主詞是組成部分、受詞是整體，接不上 trust to strangers 這個結構。"
+          },
+          notes:[
+            {term:"extend sth to sb", pos:"phr.", gloss:"把…給予某人（extend trust／an invitation／a warm welcome／a helping hand to sb）", ex:"They extended a warm welcome to the visitors.", exZh:"他們對訪客表達了熱烈的歡迎。"},
+            {term:"be the last person to V", pos:"句型", gloss:"最不可能做某事的人（不是「最後一個做的人」）。這是一個否定語氣的慣用句型。"}
+          ]},
+
+        { n:3, kind:"動詞",
+          stem:"The more popular the island becomes, the more often the number of visitors ______ what its narrow roads and small harbor can handle.",
+          options:{A:"soars 飆升、驟增",B:"contains 包含、容納",C:"exceeds 超過、超出",D:"possesses 擁有"}, answer:"C",
+          translation:"這座島嶼越受歡迎，遊客人數超出它狹窄道路與小型港口所能承受的範圍的次數就越頻繁。",
+          explain:{
+            A:"soar 意為「飆升」，是不及物動詞，後面不能接受詞；但空格後有名詞子句 what its narrow roads and small harbor can handle 當受詞，結構不合。這是本題最需要小心的誘答，因為語意看似合理，但詞性不對。",
+            B:"contain 意為「包含、容納」，是「大的裝小的」；但本句是遊客人數「大於」承載量，方向相反。",
+            C:"exceed 意為「超過、超出」，是及物動詞。線索有兩個：空格後的名詞子句 what ... can handle（所能承受的）正是被超越的上限，而 The more popular ... the more often（越受歡迎、越頻繁）的比較結構也說明這是超載的情況。",
+            D:"possess 意為「擁有」，受詞是財產或特質；遊客人數不會「擁有」承載量。"
+          },
+          notes:[
+            {term:"exceed", pos:"vt.", gloss:"超過、超出（exceed the limit／expectations／capacity）。adj. excessive 過度的／adv. exceedingly 極為", ex:"Demand has exceeded supply this year.", exZh:"今年需求已超過供給。"},
+            {term:"及物還是不及物", pos:"技巧", gloss:"空格後若有受詞（含名詞子句），就要填及物動詞。soar 是不及物動詞，一看到後面有 what 子句就能刪掉。"}
+          ]},
+
+        { n:4, kind:"形容詞",
+          stem:"Life in the remote mountain villages stands in ______ contrast to that in the capital, where skyscrapers block the sky and traffic never stops.",
+          options:{A:"lush 蒼翠繁茂的",B:"majestic 雄偉壯麗的",C:"gorgeous 華麗動人的",D:"stark 鮮明的；嚴峻的"}, answer:"D",
+          translation:"偏遠山村的生活與首都的生活形成鮮明的對比，在首都，摩天大樓遮蔽天空，車流從不停歇。",
+          explain:{
+            A:"lush 意為「（植物）蒼翠繁茂的」，形容草木或景觀（lush greenery）；它可以形容山村的環境，但無法修飾 contrast（對比）這個抽象名詞。",
+            B:"majestic 意為「雄偉壯麗的」，形容山川或建築的氣勢，同樣不能用來修飾對比的強烈程度。",
+            C:"gorgeous 意為「華麗動人的」，是對美的讚嘆，與對比的鮮明與否無關。",
+            D:"stand in stark contrast to sth 是固定搭配，意為「與…形成鮮明的對比」，stark 在此意為「截然、顯著」。線索是 contrast to that in the capital 這個對比結構，以及關係子句 where skyscrapers block the sky and traffic never stops（摩天大樓遮天、車流不停）——與偏遠山村的差距極大。"
+          },
+          notes:[
+            {term:"in stark contrast to", pos:"phr.", gloss:"與…形成鮮明對比（＝in sharp／striking contrast to）。stark 另有「嚴峻的」（stark reality 殘酷的現實）之意", ex:"Her calm stood in stark contrast to his panic.", exZh:"她的冷靜與他的慌亂形成鮮明對比。"},
+            {term:"that 代替前面的名詞", pos:"文法", gloss:"contrast to that in the capital 的 that ＝ life（避免重複）。單數用 that，複數用 those。"}
+          ]},
+
+        { n:5, kind:"名詞",
+          stem:"Not until the photo had been shared millions of times did experts expose the ______ behind it: the image had been digitally altered.",
+          options:{A:"deception 欺騙、騙局",B:"illustration 插圖；例證",C:"panic 恐慌",D:"credit 功勞；信用"}, answer:"A",
+          translation:"直到這張照片被分享了數百萬次，專家才揭露它背後的騙局：這張影像是經過數位修改的。",
+          explain:{
+            A:"deception 意為「欺騙、騙局」。線索在冒號後的說明：the image had been digitally altered（影像經過數位修改），這正是一場刻意誤導大眾的騙局；而動詞 expose（揭露）的受詞通常也是不可告人的事。",
+            B:"illustration 意為「插圖」或「例證」，是用來說明事情的輔助材料，不是需要被 expose（揭發）的對象。",
+            C:"panic 意為「恐慌」，是情緒反應；照片造假可能引發恐慌，但專家揭露的是造假這件事本身，不是情緒。",
+            D:"credit 意為「功勞、信用」，是正面的；expose the credit behind it 語意不通，揭露的應該是負面的隱情。"
+          },
+          notes:[
+            {term:"deception", pos:"n.", gloss:"欺騙、騙局（v. deceive；adj. deceptive 具欺騙性的）", ex:"The whole scheme was a deliberate deception.", exZh:"整個計畫是一場刻意的騙局。"},
+            {term:"Not until ... + 倒裝", pos:"句型", gloss:"直到…才…。Not until 置句首時主要子句倒裝（did experts expose）。本句即為範例。"}
+          ]},
+
+        { n:6, kind:"片語動詞",
+          stem:"The moment the rumor of an egg shortage spread online, shoppers rushed to supermarkets to ______ eggs they did not actually need.",
+          options:{A:"make for 前往；促成",B:"fall for 受騙上當；愛上",C:"stock up on 囤積、大量購買",D:"be worlds apart 天差地遠"}, answer:"C",
+          translation:"蛋荒的謠言一在網路上傳開，購物者就衝到超市去囤積他們其實並不需要的蛋。",
+          explain:{
+            A:"make for 意為「前往（某處）」或「促成（某結果）」，受詞是地點或結果；但空格後是 eggs（商品），而且他們已經 rushed to supermarkets（衝到超市），不需要再「前往」。",
+            B:"fall for 意為「受騙上當」或「愛上」。他們確實是被謠言騙了，但 fall for 的受詞必須是「騙局或謠言」（fall for the rumor），不能接 eggs。語意方向對、受詞卻錯，是本題最需要分辨的選項。",
+            C:"stock up on sth 意為「囤積、大量採購某物」。線索是 rushed to supermarkets（衝到超市）與 they did not actually need（其實並不需要），搶購超出需求的數量，正是囤貨行為。",
+            D:"be worlds apart 意為「天差地遠」，是形容兩者差異極大的狀態，不是一個可以接受詞的動作，而且空格前有 to（不定詞），結構也不合。"
+          },
+          notes:[
+            {term:"stock up on", pos:"phr. v.", gloss:"囤積、大量採購（stock up on supplies／canned food）", ex:"People stocked up on rice before the typhoon.", exZh:"颱風來前人們囤購了米。"},
+            {term:"The moment + S + V", pos:"句型", gloss:"一…就…（＝as soon as）。同類：the instant／the minute／immediately ＋ 子句。"}
+          ]},
+
+        { n:7, kind:"動詞",
+          stem:"It is high time that schools taught students to ______ between solid reporting and stories designed purely to stir up anger.",
+          options:{A:"differentiate 分辨、區別",B:"evaluate 評估",C:"cite 引述、引用",D:"note 注意到；記下"}, answer:"A",
+          translation:"學校早該教學生分辨紮實的報導與那些純粹為了激起憤怒而寫的故事了。",
+          explain:{
+            A:"differentiate between A and B 是固定結構，意為「分辨 A 與 B」。關鍵線索是介系詞 between 與後面並列的兩個對象：solid reporting（紮實的報導）與 stories designed purely to stir up anger（純為激怒而寫的故事），正是要被區分開的兩類文章。",
+            B:"evaluate 意為「評估」，是及物動詞直接接受詞（evaluate a plan），不搭配 between。",
+            C:"cite 意為「引述、引用」，受詞是來源或例子，與分辨真假無關，也不接 between。",
+            D:"note 意為「注意到、記下」，是及物動詞；若用 note the difference between 才成立，但本句空格後直接是 between，中間沒有受詞。"
+          },
+          notes:[
+            {term:"differentiate between A and B", pos:"phr.", gloss:"分辨 A 與 B（＝distinguish／discriminate between A and B）。也可用 differentiate A from B。", ex:"Children must learn to differentiate between fact and opinion.", exZh:"孩子必須學會分辨事實與意見。"},
+            {term:"It is high time that + S + 過去式", pos:"句型", gloss:"早該…了（假設語氣，用過去式表示現在還沒做）。本句的 taught 就是這個用法，不是真的過去式。"}
+          ]},
+
+        { n:8, kind:"形容詞",
+          stem:"However ______ a headline may be, readers who only skim it may still come away with a false impression of the story.",
+          options:{A:"misleading 誤導的",B:"truthful 真實不虛的",C:"flawed 有瑕疵的",D:"political 政治的"}, answer:"B",
+          translation:"無論一則標題多麼真實，只草草瀏覽它的讀者仍可能對整篇報導留下錯誤的印象。",
+          explain:{
+            A:"misleading 意為「誤導的」。若填入，句意會變成「無論標題多誤導，讀者都可能有錯誤印象」——那是理所當然的結果，However（無論多麼）的讓步語氣就失去了作用。這是本題最多人選錯的地方：要看的不是哪個字與 false impression 相配，而是哪個字能和它形成讓步對比。",
+            B:"However ＋ 形容詞 的句型表示讓步，意為「無論多麼…」，所以空格的形容詞必須與主要子句的結果相反。主要子句說讀者仍會 come away with a false impression（留下錯誤印象），那麼讓步的前提就必須是正面的——標題本身是真實的。真標題配上只略讀的讀者，照樣誤解，這才是這句話要講的道理。",
+            C:"flawed 意為「有瑕疵的」，與 misleading 同為負面評價，同樣無法與 false impression 形成讓步對比。",
+            D:"political 意為「政治的」，是中性的分類而非程度形容詞，無法被 However 修飾成「無論多麼政治」，而且與讀者是否誤解沒有必然關係。"
+          },
+          notes:[
+            {term:"However + adj. + S + V", pos:"句型", gloss:"無論多麼…（＝No matter how + adj.）。讓步子句的內容必須與主句結果形成反差。", ex:"However hard it rains, the game will go on.", exZh:"無論雨下得多大，比賽都會進行。"},
+            {term:"讓步句的反差原則", pos:"技巧", gloss:"看到 However／No matter how，先讀主要子句的結果，再找與那個結果相反的形容詞。順著填就會答錯。"}
+          ]},
+
+        { n:9, kind:"名詞",
+          stem:"But for the river nearby, the tiny fishing ______ would never have grown into the busy port city it is today.",
+          options:{A:"crew 船員、工作團隊",B:"agriculture 農業",C:"valley 山谷",D:"settlement 聚落、定居地"}, answer:"D",
+          translation:"要不是附近有那條河，這個小小的漁村聚落絕不可能發展成今天這座繁忙的港市。",
+          explain:{
+            A:"crew 意為「船員、全體工作人員」，指的是一群人；但 grow into the busy port city（發展成一座港市）的主詞必須是一個聚居地，而非人員。",
+            B:"agriculture 意為「農業」，是產業而非地點，而且本句講的是漁業（fishing），不是農業。",
+            C:"valley 意為「山谷」，是地形；山谷不會「長成一座港市」，而且漁村通常在河海交會處而非山谷。",
+            D:"settlement 意為「聚落、定居地」。線索是 grow into the busy port city（發展成繁忙的港市）這個從小變大的過程——起點必須是一個規模更小的人類聚居地，而 the tiny fishing（小小的漁業）正好修飾它。"
+          },
+          notes:[
+            {term:"settlement", pos:"n.", gloss:"聚落、定居地（a fishing／farming settlement）；另有「和解、協議」之意（reach a settlement）。v. settle", ex:"The first settlement here dates back 400 years.", exZh:"此地最早的聚落可追溯到四百年前。"},
+            {term:"But for + N", pos:"句型", gloss:"要不是…（＝If it were not for／If it had not been for）。本句主要子句用 would never have grown，表示與過去事實相反。"}
+          ]},
+
+        { n:10, kind:"動詞片語",
+          stem:"Whereas farming used to be the backbone of the local economy, today farmers ______ less than five percent of the town's workforce.",
+          options:{A:"consist of 由…組成",B:"take a look at 看一看",C:"make up 構成、佔",D:"are composed of 由…組成"}, answer:"C",
+          translation:"農業過去曾是當地經濟的支柱，而如今農民佔全鎮勞動人口的不到百分之五。",
+          explain:{
+            A:"consist of 意為「由…組成」，方向是「整體 consist of 部分」。但本句的主詞 farmers 是部分、受詞 the town's workforce 是整體，方向正好顛倒。要說 The workforce consists of farmers 才對。",
+            B:"take a look at 意為「看一看」，是觀看的動作，接不上 less than five percent of the workforce 這個比例。",
+            C:"make up 意為「構成、佔（比例）」，方向是「部分 make up 整體」。線索是 less than five percent of the town's workforce（勞動人口的不到百分之五）這個比例表達，主詞 farmers 正是構成整體的那個部分。而 Whereas 的對比（過去是支柱、現在不到百分之五）也說明這是在講佔比的消長。",
+            D:"be composed of 同樣是「整體由部分組成」，與 consist of 方向相同、都與本句顛倒。它和 (A) 其實是同一個概念的兩種說法，可以一起刪掉。"
+          },
+          notes:[
+            {term:"部分與整體的方向", pos:"整理", gloss:"部分 → 整體：A make up B／A account for B／A constitute B。整體 → 部分：B consist of A／B be composed of A／B be made up of A。方向弄錯是最常見的失分點。", ex:"Women make up 60% of the staff.", exZh:"女性佔員工的六成。"},
+            {term:"同義選項可一起刪", pos:"技巧", gloss:"(A) consist of 與 (D) be composed of 意思相同、方向相同，兩者只能同對或同錯；單選題中必然同時是錯的。"}
+          ]}
+      ]
+    }]
+  },
+
+  {
+    id:"cl", label:"二、綜合測驗", score:"20% · 每題 2%",
+    instruction:"答案：C B D A B　C A D B C",
+    groups:[
+      {
+        passage:"“Formosa” is a name usually linked to Taiwan, yet a province in northern Argentina bears it too. Both of the names came from sixteenth-century European explorers. Portuguese sailors, struck by the __11__ of Taiwan's green mountains, called it “Ilha Formosa,” or “beautiful island,” while Spanish explorers gave the name to a South American region. Geography links them, too. Their latitudes __12__ only in direction: Taiwan lies about 23 degrees north of the equator, and Argentina's Formosa about 23 degrees south. In fact, they are nearly antipodal: a tunnel dug through the Earth from Taiwan would end near its namesake.\n\nBeyond these links, however, the two lands have little in common. Taiwan is packed with towering mountains, crowded cities, and high-tech factories. __13__ , Argentina's Formosa is a flat land of grasslands and marshes, where most people still make a living from cattle and crops.\n\nThe shared name also hides a darker story. Indigenous peoples had lived on both lands for thousands of years __14__ the Europeans' arrival, yet the explorers named the places as if they were empty and theirs to claim. Even the “amazing” antipodal link says __15__ about nature than about European map-making, the very system used to chart and claim new lands. Seen this way, “discovery” is never neutral; it reflects who held the power to name.",
+        zh:"「福爾摩沙」通常是與臺灣連在一起的名字，但阿根廷北部也有一個省分叫這個名字。兩個名字都來自十六世紀的歐洲探險家。葡萄牙水手被臺灣翠綠山巒的壯麗所震撼，稱它為「Ilha Formosa」，意即「美麗之島」，而西班牙探險家則把這個名字給了一塊南美洲的地區。地理也把它們連在一起。兩地的緯度只在方向上不同：臺灣位於赤道以北約二十三度，而阿根廷的福爾摩沙則在以南約二十三度。事實上，它們幾乎是對蹖點：從臺灣往地心鑽一條隧道，出口會落在它的同名之地附近。\n\n然而除了這些連結之外，兩地幾乎沒有共通之處。臺灣擠滿了高聳的山脈、擁擠的城市與高科技工廠。相較之下，阿根廷的福爾摩沙是一片由草原與沼澤構成的平坦土地，大多數人仍以養牛與種作維生。\n\n這個共有的名字還藏著一段較黑暗的故事。在歐洲人抵達之前，原住民族已經在這兩塊土地上生活了數千年，然而探險家為這些地方命名時，卻彷彿它們是空的、是他們可以聲稱擁有的。甚至連那個「驚人的」對蹖點連結，說明的也不是自然，而是歐洲的製圖體系——那正是用來測繪並宣稱擁有新土地的那套系統。這樣看來，「發現」從來不是中立的；它反映的是誰掌握了命名的權力。",
+        questions:[
+          { n:11, kind:"名詞",
+            stem:"Portuguese sailors, struck by the ______ of Taiwan's green mountains, called it “Ilha Formosa,” or “beautiful island.”",
+            options:{A:"density 密度",B:"possession 持有、所有物",C:"majesty 雄偉壯麗",D:"flaw 瑕疵、缺陷"}, answer:"C",
+            translation:"葡萄牙水手被臺灣翠綠山巒的壯麗所震撼，稱它為「Ilha Formosa」，意即「美麗之島」。",
+            explain:{
+              A:"density 意為「密度」，是可測量的物理量；水手被震撼的是視覺上的壯觀，不是山的密度數值。",
+              B:"possession 意為「持有、所有物」，指擁有這件事；山巒不會有「所有權」讓人震撼，而且與命名為「美麗之島」的因果對不上。",
+              C:"majesty 意為「雄偉壯麗」，是 majestic 的名詞形。兩個線索：struck by（被…震撼）說明這是令人驚嘆的特質，而結果 called it “beautiful island”（稱它為美麗之島）更直接點明他們看到的是美。",
+              D:"flaw 意為「瑕疵、缺陷」，是負面的；若山巒有缺陷，就不會被命名為「美麗之島」，語意矛盾。"
+            },
+            notes:[
+              {term:"majesty", pos:"n.", gloss:"雄偉、壯麗（adj. majestic）；大寫 Your Majesty 則是對君主的尊稱「陛下」", ex:"We were awed by the majesty of the canyon.", exZh:"峽谷的雄偉令我們驚嘆。"},
+              {term:"be struck by", pos:"phr.", gloss:"被…打動、深受震撼（strike 的被動）。後面接讓人印象深刻的特質。"}
+            ]},
+
+          { n:12, kind:"動詞",
+            stem:"Their latitudes ______ only in direction: Taiwan lies about 23 degrees north of the equator, and Argentina's Formosa about 23 degrees south.",
+            options:{A:"coincide 不約而同、一致",B:"differ 不同、有差異",C:"overlap 重疊",D:"settle 定居；解決"}, answer:"B",
+            translation:"兩地的緯度只在方向上不同：臺灣位於赤道以北約二十三度，而阿根廷的福爾摩沙則在以南約二十三度。",
+            explain:{
+              A:"coincide 意為「不約而同、恰好一致」，強調的是相同；但副詞 only in direction（只在方向上）暗示有一個地方不一樣，必須填表示差異的字。",
+              B:"differ in sth 意為「在某方面不同」。線索是 only in direction（只在方向上）——這個 only 限定了差異的範圍，而冒號後的 north ... south（北緯與南緯）正是那唯一的差別：度數相同，南北相反。",
+              C:"overlap 意為「重疊」，用於範圍或時間的部分交疊；但緯度是一條線上的位置，而且 23 度北與 23 度南並不重疊。",
+              D:"settle 意為「定居」或「解決」，主詞須是人或爭端；緯度不會定居。"
+            },
+            notes:[
+              {term:"differ in / from", pos:"vi.", gloss:"differ in sth 在某方面不同／differ from sb/sth 與…不同。n. difference／adj. different", ex:"The two models differ only in color.", exZh:"這兩款只在顏色上不同。"},
+              {term:"only 是關鍵的限定詞", pos:"技巧", gloss:"「只在…方面不同」隱含「其他方面都相同」。看到 only in，就知道空格要填「差異」而非「相同」。"}
+            ]},
+
+          { n:13, kind:"轉折語",
+            stem:"Taiwan is packed with towering mountains, crowded cities, and high-tech factories. ______, Argentina's Formosa is a flat land of grasslands and marshes.",
+            options:{A:"As a result 因此",B:"For instance 舉例來說",C:"In addition 此外",D:"By contrast 相較之下"}, answer:"D",
+            translation:"臺灣擠滿了高聳的山脈、擁擠的城市與高科技工廠。相較之下，阿根廷的福爾摩沙是一片由草原與沼澤構成的平坦土地。",
+            explain:{
+              A:"As a result 表因果，前句必須是後句的原因；但臺灣多山並不會「導致」阿根廷的福爾摩沙地勢平坦，兩地毫無因果關係。",
+              B:"For instance 表舉例，後句必須是前句的例子；但阿根廷的福爾摩沙不是臺灣的例子，兩者是並列的對象。",
+              C:"In addition 表補充，前後句必須是同方向的累加；但 towering mountains（高聳山脈）與 a flat land（平坦土地）是相反的，不是累加。這是最需要分辨的選項。",
+              D:"By contrast 表對比。判斷依據是三組對立的描述：towering mountains 對 a flat land（高山對平地）、crowded cities 對 grasslands and marshes（擁擠城市對草原沼澤）、high-tech factories 對 cattle and crops（高科技工廠對畜牧農作）。而段首的 the two lands have little in common（兩地幾乎沒有共通之處）更已經預告了這是對比段落。"
+            },
+            notes:[
+              {term:"by contrast", pos:"phr.", gloss:"相較之下、對比而言（＝in contrast／on the other hand）。常用於兩個對象的差異並列。", ex:"The north is wet; by contrast, the south is dry.", exZh:"北部潮濕，相較之下南部乾燥。"},
+              {term:"先讀段首句", pos:"技巧", gloss:"段首 the two lands have little in common 已經說明這段要講差異，轉折語自然是對比類。轉折詞的題目一定要往前讀。"}
+            ]},
+
+          { n:14, kind:"介系詞片語",
+            stem:"Indigenous peoples had lived on both lands for thousands of years ______ the Europeans' arrival, yet the explorers named the places as if they were empty.",
+            options:{A:"prior to 在…之前",B:"in the wake of 在…之後、隨著…而來",C:"regardless of 不顧、無論",D:"on behalf of 代表"}, answer:"A",
+            translation:"在歐洲人抵達之前，原住民族已經在這兩塊土地上生活了數千年，然而探險家為這些地方命名時，卻彷彿它們是空的。",
+            explain:{
+              A:"prior to sth 意為「在…之前」。關鍵線索是動詞的時態：had lived（過去完成式）表示這個動作早於另一個過去的時間點，而那個時間點正是 the Europeans' arrival（歐洲人的抵達）。",
+              B:"in the wake of 意為「在…之後、隨著…而來」，時間順序與過去完成式 had lived 相反。這是本題最需要分辨的選項：時態已經決定了先後，方向不能顛倒。",
+              C:"regardless of 意為「不顧、無論」，表示不受某事影響；但本句要交代的是時間先後，而非是否受影響。",
+              D:"on behalf of 意為「代表（某人）」，與時間或讓步都無關。"
+            },
+            notes:[
+              {term:"prior to", pos:"phr.", gloss:"在…之前（較 before 正式）。adj. prior 先前的（prior experience 先前的經驗）", ex:"Please arrive 30 minutes prior to departure.", exZh:"請在出發前三十分鐘抵達。"},
+              {term:"過去完成式是時序線索", pos:"技巧", gloss:"had p.p. 表示「比另一個過去更早」。看到它，空格的時間介系詞就必須是「之前」而非「之後」。"}
+            ]},
+
+          { n:15, kind:"比較級",
+            stem:"Even the “amazing” antipodal link says ______ about nature than about European map-making, the very system used to chart and claim new lands.",
+            options:{A:"more 更多",B:"less 較少",C:"anything 任何事",D:"nothing 沒有任何事"}, answer:"B",
+            translation:"甚至連那個「驚人的」對蹖點連結，說明的也不是自然，而是歐洲的製圖體系——那正是用來測繪並宣稱擁有新土地的那套系統。",
+            explain:{
+              A:"more 的方向錯了。若說 says more about nature than about map-making，意思會變成「它主要說明的是自然」，但整段的論點是要揭露歐洲製圖與殖民的權力關係，強調的重點應落在 map-making 這一邊。",
+              B:"句中有 than，所以空格必須是比較級；而 says less about A than about B 的意思是「它說明的不是 A，而是 B」。整段的結論 “discovery” is never neutral; it reflects who held the power to name（「發現」從不中立，它反映誰掌握命名權）明確指出重點在歐洲的製圖體系，而非自然的巧合。",
+              C:"anything 不是比較級，無法與 than 搭配；而且 says anything about 多用於否定句或疑問句。",
+              D:"nothing 同樣不是比較級，不能接 than；若要表達「完全無關」會寫 says nothing about nature，但後面就不能再接 than。"
+            },
+            notes:[
+              {term:"say less about A than about B", pos:"句型", gloss:"（這件事）說明的不是 A，而是 B。常用於評論式的寫作，把焦點從表象轉向深層原因。", ex:"The result says less about luck than about preparation.", exZh:"這個結果反映的不是運氣，而是準備。"},
+              {term:"看到 than 就找比較級", pos:"技巧", gloss:"句中有 than，空格必為比較級（more／less／better 等）。anything／nothing 可以直接刪除。"}
+            ]}
+        ]
+      },
+      {
+        passage:"Like many places worldwide, Taiwan faces a serious threat from fake news. Social media and messaging apps have made spreading rumors effortless, and false stories travel fastest among friends and family. Examples range from miracle cures to invented scandals about __16__ just before voters head to the polls. Over time, this flood of falsehoods deepens political divisions and erodes trust in the press and the government.\n\nFact-checking groups do expose many false claims, yet the fight is like an endless game of whack-a-mole: whenever one rumor is knocked down, others spring up in no time. __17__ learning to resist misinformation ourselves can we hope to win this battle. Experts offer three suggestions. To begin with, a fake news site with a familiar logo and a professional layout can easily __18__ a trusted outlet. So before passing a story on, we should check where it comes from. __19__ , we may end up spreading the very lies we hate. Second, we should reconnect with our communities. Rather than blocking everyone who dares to __20__ to our views, we can engage them in calm dialogue. Finally, we can push for systemic change by voting for leaders who take the problem seriously and paying for reliable journalism. In the end, media literacy, backed by individuals, communities, and governments, remains Taiwan's strongest long-term defense.",
+        zh:"如同世界各地許多地方，臺灣面臨假新聞的嚴重威脅。社群媒體與通訊軟體讓散播謠言變得毫不費力，而不實的故事在親友之間傳得最快。例子從神奇療法，到選民即將前往投票前所捏造的候選人醜聞，無所不包。久而久之，這股謊言的洪流加深了政治分歧，也侵蝕了人們對媒體與政府的信任。\n\n事實查核團體確實揭穿了許多不實說法，但這場仗就像沒完沒了的打地鼠遊戲：每打掉一個謠言，其他的馬上又冒出來。唯有學會自己抵抗錯誤訊息，我們才有希望打贏這場仗。專家提出三項建議。首先，一個有著熟悉標誌與專業排版的假新聞網站，很容易被誤認為是可信的媒體。所以在把一則報導轉傳出去之前，我們應該查清楚它的來源。否則，我們可能最後反而散播了自己最厭惡的那些謊言。其次，我們應該重新與社群連結。與其封鎖每一個敢於反對我們觀點的人，不如讓他們參與平和的對話。最後，我們可以推動制度性的改變：投票支持認真看待這個問題的領導人，並為可靠的新聞付費。最終，由個人、社群與政府共同支撐的媒體識讀能力，仍是臺灣最強大的長期防線。",
+        questions:[
+          { n:16, kind:"名詞",
+            stem:"Examples range from miracle cures to invented scandals about ______ just before voters head to the polls.",
+            options:{A:"celebrities 名人",B:"journalists 記者",C:"candidates 候選人",D:"influencers 網紅"}, answer:"C",
+            translation:"例子從神奇療法，到選民即將前往投票前所捏造的候選人醜聞，無所不包。",
+            explain:{
+              A:"celebrities 意為「名人」，名人緋聞確實是假新聞的常見題材，但時間狀語 just before voters head to the polls（就在選民前往投票之前）把場景限定在選舉，捏造名人醜聞與投票沒有直接關聯。這是本題最需要分辨的選項。",
+              B:"journalists 意為「記者」，是報導新聞的人；本段後文 erodes trust in the press（侵蝕對媒體的信任）說的是媒體受害，而非記者成為醜聞的主角。",
+              C:"兩個線索：時間狀語 just before voters head to the polls（就在選民前往投票之前）點明這是選舉前夕，而下一句 deepens political divisions（加深政治分歧）確認這是政治領域的假訊息。選舉前被捏造醜聞的對象，自然是 candidates（候選人）。",
+              D:"influencers 意為「網紅」，是社群媒體上的意見領袖；他們多是訊息的傳播者，而非選舉前被造謠攻擊的對象。"
+            },
+            notes:[
+              {term:"head to the polls", pos:"phr.", gloss:"前往投票（the polls 指投票所或投票；go to the polls 亦可）", ex:"Voters head to the polls this Saturday.", exZh:"選民將在本週六前往投票。"},
+              {term:"range from A to B", pos:"phr.", gloss:"範圍從 A 到 B（用來舉出兩個極端，表示涵蓋範圍廣）。"}
+            ]},
+
+          { n:17, kind:"倒裝句",
+            stem:"______ learning to resist misinformation ourselves can we hope to win this battle.",
+            options:{A:"Only by 唯有藉由",B:"Not only by 不僅藉由",C:"Despite 儘管",D:"Upon 一…就"}, answer:"A",
+            translation:"唯有學會自己抵抗錯誤訊息，我們才有希望打贏這場仗。",
+            explain:{
+              A:"Only by + V-ing 置於句首時，主要子句必須倒裝，正好解釋了句中 can we hope 這個助動詞提前的結構。語意上，前一句說事實查核像打地鼠般打不完（others spring up in no time），所以唯一的出路是讀者自己學會抵抗，Only（唯有）的排他語氣正合此意。",
+              B:"Not only 置句首雖然也會倒裝，但它必須有 but also 在後面呼應，構成「不僅…而且…」；本句後文並沒有這個對應部分。這是結構上最接近的誘答。",
+              C:"Despite 是介系詞「儘管」，後接名詞或動名詞，但它不是否定副詞，不會引發主要子句倒裝，無法解釋 can we hope 的語序。",
+              D:"Upon + V-ing 意為「一…就…」（Upon arriving, he called us），同樣不引發倒裝，而且語意上強調的是時間先後，不是「唯一途徑」。"
+            },
+            notes:[
+              {term:"Only + 副詞片語 + 倒裝", pos:"句型", gloss:"Only by／Only when／Only after／Only then 置句首時，主要子句倒裝（助動詞提前）。", ex:"Only by working together can we succeed.", exZh:"唯有通力合作，我們才能成功。"},
+              {term:"倒裝是答案的線索", pos:"技巧", gloss:"主要子句已經倒裝（can we hope），就只能選會引發倒裝的選項。Despite 與 Upon 可以直接刪除。"}
+            ]},
+
+          { n:18, kind:"片語動詞",
+            stem:"A fake news site with a familiar logo and a professional layout can easily ______ a trusted outlet.",
+            options:{A:"stand out from 從…之中突出",B:"give way to 讓位給、被…取代",C:"live up to 達到（期望、標準）",D:"be mistaken for 被誤認為"}, answer:"D",
+            translation:"一個有著熟悉標誌與專業排版的假新聞網站，很容易被誤認為是可信的媒體。",
+            explain:{
+              A:"stand out from 意為「從…之中顯得突出」，強調的是容易被看出不同；但本句的重點正好相反——它偽裝得太好，讓人分不出來。方向完全顛倒。",
+              B:"give way to 意為「讓位給、被…取代」，描述的是兩者的替換或消長，與「被認錯」無關。",
+              C:"live up to 意為「達到（期望、名聲、標準）」，受詞多為 expectations／reputation；假新聞網站不是在努力達成可信媒體的標準，而是在冒充。",
+              D:"be mistaken for sth 意為「被誤認為是某物」。兩個線索：主詞的修飾語 with a familiar logo and a professional layout（熟悉的標誌、專業的排版）說明它外表唯妙唯肖，而下一句的建議 we should check where it comes from（應該查清來源）正是為了避免認錯。"
+            },
+            notes:[
+              {term:"be mistaken for", pos:"phr.", gloss:"被誤認為（mistake A for B 把 A 誤認為 B）", ex:"He is often mistaken for his twin brother.", exZh:"他常被誤認成他的雙胞胎兄弟。"},
+              {term:"outlet", pos:"n.", gloss:"（新聞）媒體、通路（a news outlet 新聞媒體）；也指「出口」或「暢貨中心」。"}
+            ]},
+
+          { n:19, kind:"轉折語",
+            stem:"So before passing a story on, we should check where it comes from. ______, we may end up spreading the very lies we hate.",
+            options:{A:"In turn 接著、反過來",B:"Otherwise 否則",C:"Meanwhile 同時",D:"Above all 最重要的是"}, answer:"B",
+            translation:"所以在把一則報導轉傳出去之前，我們應該查清楚它的來源。否則，我們可能最後反而散播了自己最厭惡的那些謊言。",
+            explain:{
+              A:"In turn 意為「接著、依次」或「反過來」，用於描述連續或互惠的關係；但本句是在講「不照做的後果」，不是接續的下一步。",
+              B:"Otherwise 意為「否則」，表示「如果不這麼做的話」。線索是前句的建議 we should check where it comes from（應該查核來源），而後句是不查核的下場 spreading the very lies we hate（散播自己最厭惡的謊言），兩句構成條件與反面結果。",
+              C:"Meanwhile 意為「同時、在此期間」，表示兩件事並行發生；但查核來源與散播謊言是互斥的，不會同時成立。",
+              D:"Above all 意為「最重要的是」，用於強調清單中最關鍵的一項；但本句不是在排序重要性，而且這段的順序詞已經用了 To begin with、Second、Finally。"
+            },
+            notes:[
+              {term:"otherwise", pos:"adv.", gloss:"否則、要不然（＝if not）。常接在建議或條件句之後，引出不照做的後果。", ex:"Write it down; otherwise you'll forget.", exZh:"把它寫下來，否則你會忘記。"},
+              {term:"the very + N", pos:"用法", gloss:"正是那個…（加強語氣）。the very lies we hate ＝ 正是我們所厭惡的那些謊言。"}
+            ]},
+
+          { n:20, kind:"動詞",
+            stem:"Rather than blocking everyone who dares to ______ to our views, we can engage them in calm dialogue.",
+            options:{A:"cling 緊緊依附",B:"adapt 適應、調整",C:"object 反對",D:"listen 傾聽"}, answer:"C",
+            translation:"與其封鎖每一個敢於反對我們觀點的人，不如讓他們參與平和的對話。",
+            explain:{
+              A:"cling to sth 意為「緊抓不放、固守（信念）」。它雖然也搭配 to，但意思是「堅持我們的觀點」；而 blocking everyone（封鎖所有人）只會發生在對方不同意的時候，不會因為對方認同就封鎖他。",
+              B:"adapt to sth 意為「適應」；若說封鎖那些「適應我們觀點」的人，語意不通。",
+              C:"object to sth 意為「反對某事」，介系詞 to 是關鍵。兩個線索：Rather than blocking everyone（與其封鎖所有人）說明這些人是令我們不悅的；而解方 engage them in calm dialogue（讓他們參與平和的對話）正是處理歧見的方式。動詞 dares to（敢於）也暗示這是需要勇氣的異議行為。",
+              D:"listen to sth 意為「傾聽」，是正面的；沒有人會封鎖願意聽自己說話的人，而且也不需要用 dares to（敢於）來形容。"
+            },
+            notes:[
+              {term:"object to + N/V-ing", pos:"phr.", gloss:"反對…（to 是介系詞，後接名詞或動名詞）。n. objection 反對／adj. objectionable 令人反感的", ex:"Many residents objected to the new plan.", exZh:"許多居民反對這項新計畫。"},
+              {term:"四個選項都配 to", pos:"技巧", gloss:"cling to／adapt to／object to／listen to 都成立，所以這題不能靠介系詞判斷，必須完全靠語意。關鍵在 blocking 與 dares to 這兩個帶有衝突語感的字。"}
+            ]}
+        ]
+      }
+    ]
+  },
+
+  {
+    id:"fl", label:"三、文意選填", score:"20% · 每題 2%",
+    instruction:"答案：21 H　22 C　23 E　24 I　25 A　26 J　27 B　28 G　29 D　30 F",
+    bank:{A:"hollow 空洞的、虛假的",B:"stream 湧入、如流水般湧現",C:"core 核心的",D:"toll 損害、代價",E:"appeal 吸引力",F:"discriminate 分辨、區別",G:"live 現場直播地",H:"bound 必定（be bound to V）",I:"opposite 相反的情況",J:"venture 冒險前往"},
+    bankWide:true,
+    groups:[{
+      passage:"Every week, new editions of tabloids line the racks beside supermarket checkouts, where shoppers waiting in line can hardly avoid them. With glossy celebrity photos and headlines screaming about secret affairs, these magazines are __21__ to catch the eye of even the most sensible customer. The National Enquirer, America's best-known tabloid, did not take off until the 1950s, when it turned to sex and scandal. Bored shoppers soon became its __22__ audience, and sales climbed into the millions. Such is the __23__ of gossip that even people who call tabloids “trash” admit to sneaking a look now and then.\n\nMany readers assume that anything in print must have been checked. In fact, the __24__ is usually true: most stories rely on unnamed sources, and publishers openly admit to paying for “juicy” tips. When sued, they may print __25__ apologies in tiny type on an inside page, only to repeat the same claims weeks later. Photos sell just as well as words, and this is where the paparazzi come in. Some __26__ onto private property and hide in bushes for hours, knowing that a single embarrassing shot can earn them thousands of dollars.\n\nToday, the hunt has moved online as well. Clips of a star's worst moments now __27__ onto social media within minutes of being filmed. Some gossip channels even broadcast their chases __28__ , turning a celebrity's bad day into public entertainment. Such constant pursuit can take a heavy __29__ on its targets, some of whom grow too anxious to leave home. Readers, however, are not powerless. Those who learn to __30__ between news and gossip are far harder to fool. After all, tabloids, in print or online, are only as powerful as the people who keep paying attention to them.",
+      zh:"每個星期，新一期的八卦小報都會排滿超市結帳櫃台旁的架子，排隊的顧客幾乎無法不看到它們。靠著光鮮亮麗的名人照片與尖聲張揚祕密情事的標題，這些雜誌必然能吸引住連最理性的顧客的目光。美國最知名的八卦小報《國家詢問報》，一直到一九五○年代轉向性與醜聞之後才真正起飛。無聊的購物者很快成了它的核心讀者群，銷量攀升到數百萬份。八卦的吸引力如此之大，連那些口口聲聲說小報是「垃圾」的人，也承認自己偶爾會偷看一眼。\n\n許多讀者以為凡是印出來的東西都查核過了。事實上，情況通常正好相反：多數報導依賴匿名消息來源，而出版商也公開承認他們會付錢買「有料」的線報。被告上法庭時，他們可能會在內頁用極小的字體印上空洞的道歉，但幾週後又重複同樣的說法。照片賣得和文字一樣好，而這就是狗仔隊登場的地方。有些人冒險闖進私人土地，在灌木叢裡躲上好幾個小時，因為他們知道一張令人難堪的照片就能賺進數千美元。\n\n今天，這場追獵也已經移到網路上。明星最糟糕時刻的片段，在被拍下的幾分鐘之內就湧上社群媒體。有些八卦頻道甚至把他們的追逐過程現場直播，把名人倒楣的一天變成公眾娛樂。這樣不間斷的追逐會對當事人造成沉重的傷害，有些人甚至焦慮到不敢出門。然而讀者並非無能為力。學會分辨新聞與八卦的人，要騙他們就難多了。畢竟，無論是紙本還是網路上的八卦小報，它們的力量，就只等於那些持續關注它們的人所給予的力量。",
+      questions:[
+        { n:21, kind:"形容詞", answer:"H", answerText:"bound 必定（be bound to V）",
+          stem:"These magazines are ______ to catch the eye of even the most sensible customer.",
+          translation:"這些雜誌必然能吸引住連最理性的顧客的目光。",
+          why:"空格在 be 動詞 are 之後、不定詞 to catch 之前，要填能構成 be ___ to V 結構的字。be bound to V 意為「必定會、一定會」。語意上，前面的 glossy celebrity photos and headlines screaming about secret affairs（光鮮的名人照與尖叫式標題）說明手法極為聳動，再加上 even the most sensible customer（連最理性的顧客）這個極端例子，語氣必須是「必然」。",
+          notes:[{term:"be bound to V", pos:"phr.", gloss:"必定會（＝be certain／sure to V）。注意與 be bound for（前往）和 be bound by（受…約束）區分。", ex:"With that attitude, he is bound to fail.", exZh:"抱著那種態度，他必定會失敗。"},
+            {term:"catch the eye of sb", pos:"phr.", gloss:"吸引某人的目光（adj. eye-catching 吸睛的）"}]},
+
+        { n:22, kind:"形容詞", answer:"C", answerText:"core 核心的",
+          stem:"Bored shoppers soon became its ______ audience, and sales climbed into the millions.",
+          translation:"無聊的購物者很快成了它的核心讀者群，銷量攀升到數百萬份。",
+          why:"空格在所有格 its 與名詞 audience 之間，要填形容詞。core 當形容詞意為「核心的、最主要的」。線索是後半句 sales climbed into the millions（銷量攀升到數百萬份）——銷量大增代表這群人是支撐它的主力，而前文 shoppers waiting in line can hardly avoid them（排隊的顧客難以避開）也說明結帳區的購物者正是它的主要客群。",
+          notes:[{term:"core", pos:"adj. / n.", gloss:"核心的（core audience／core business／core values）；名詞指「核心、果核」", ex:"Students are our core readership.", exZh:"學生是我們的核心讀者群。"},
+            {term:"take off", pos:"phr. v.", gloss:"（事業、銷量）起飛、大獲成功；也指飛機起飛。前句 did not take off until the 1950s 即此義。"}]},
+
+        { n:23, kind:"名詞", answer:"E", answerText:"appeal 吸引力",
+          stem:"Such is the ______ of gossip that even people who call tabloids “trash” admit to sneaking a look now and then.",
+          translation:"八卦的吸引力如此之大，連那些口口聲聲說小報是「垃圾」的人，也承認自己偶爾會偷看一眼。",
+          why:"句型是倒裝的 Such is the ___ of A that ...（A 的…是如此之大，以致於…），空格要填名詞。線索在 that 結果子句：even people who call tabloids “trash” admit to sneaking a look（連罵它垃圾的人都偷看），這種明知不好卻忍不住的力量，正是 appeal（吸引力）。",
+          notes:[{term:"Such is / was + N + that ...", pos:"倒裝句", gloss:"＝The N is so great that ...。補語 Such 置句首引發倒裝，語氣比一般句型強烈。", ex:"Such was his fame that crowds followed him.", exZh:"他的名氣如此之大，群眾都跟著他跑。"},
+            {term:"appeal", pos:"n. / v.", gloss:"吸引力（have wide appeal 廣受歡迎）；也指「呼籲、上訴」。adj. appealing 吸引人的"}]},
+
+        { n:24, kind:"名詞", answer:"I", answerText:"opposite 相反的情況",
+          stem:"Many readers assume that anything in print must have been checked. In fact, the ______ is usually true: most stories rely on unnamed sources.",
+          translation:"許多讀者以為凡是印出來的東西都查核過了。事實上，情況通常正好相反：多數報導依賴匿名消息來源。",
+          why:"空格前有定冠詞 the，後接動詞 is，所以要填名詞當主詞。the opposite 意為「相反的情況」。線索是轉折語 In fact（事實上）加上前後的矛盾：讀者以為 must have been checked（都查核過），但實際上 rely on unnamed sources（依賴匿名來源）、甚至 paying for “juicy” tips（付錢買線報），完全相反。",
+          notes:[{term:"the opposite is true", pos:"phr.", gloss:"情況正好相反（＝quite the opposite／the reverse is true）", ex:"People think it's cheaper, but the opposite is true.", exZh:"大家以為比較便宜，事實正好相反。"},
+            {term:"in print", pos:"phr.", gloss:"以印刷形式、已出版（反義 out of print 絕版）"}]},
+
+        { n:25, kind:"形容詞", answer:"A", answerText:"hollow 空洞的、虛假的",
+          stem:"When sued, they may print ______ apologies in tiny type on an inside page, only to repeat the same claims weeks later.",
+          translation:"被告上法庭時，他們可能會在內頁用極小的字體印上空洞的道歉，但幾週後又重複同樣的說法。",
+          why:"空格在名詞 apologies 之前，要填形容詞。hollow 意為「空洞的、言不由衷的」。兩個線索：in tiny type on an inside page（在內頁用極小的字體）顯示他們根本不想讓人看到；而 only to repeat the same claims weeks later（幾週後又重複同樣的說法）證明這個道歉毫無誠意。",
+          notes:[{term:"hollow", pos:"adj.", gloss:"空洞的、言不由衷的（a hollow promise／apology／victory）；本義為「中空的」", ex:"His apology sounded hollow.", exZh:"他的道歉聽起來空洞無誠意。"},
+            {term:"only to V", pos:"用法", gloss:"結果卻…（表示出乎意料或令人失望的後續）。only to repeat ＝ 結果卻又重複。"}]},
+
+        { n:26, kind:"動詞", answer:"J", answerText:"venture 冒險前往",
+          stem:"Some ______ onto private property and hide in bushes for hours, knowing that a single embarrassing shot can earn them thousands of dollars.",
+          translation:"有些人冒險闖進私人土地，在灌木叢裡躲上好幾個小時，因為他們知道一張令人難堪的照片就能賺進數千美元。",
+          why:"主詞 Some 指前句的 paparazzi（狗仔隊），空格要填與 hide 並列的動詞（由 and 連接，同為現在式）。venture 當不及物動詞意為「冒險前往某處」，正好搭配介系詞 onto。語意上，onto private property（闖入私人土地）本身就有法律風險，而 hide in bushes for hours（在灌木叢躲數小時）更顯示這是一場有代價的行動。",
+          notes:[{term:"venture", pos:"vi. / vt.", gloss:"vi. 冒險前往（venture into／onto／out）；vt. 冒昧提出（venture a guess 冒昧猜測）", ex:"Few tourists venture into that neighborhood.", exZh:"很少有遊客敢冒險進入那一區。"},
+            {term:"paparazzi", pos:"n.", gloss:"狗仔隊（義大利文複數；單數為 paparazzo）"}]},
+
+        { n:27, kind:"動詞", answer:"B", answerText:"stream 如流水般湧現",
+          stem:"Clips of a star's worst moments now ______ onto social media within minutes of being filmed.",
+          translation:"明星最糟糕時刻的片段，在被拍下的幾分鐘之內就湧上社群媒體。",
+          why:"主詞 Clips（片段）是複數，空格要填現在式的不及物動詞並搭配介系詞 onto。stream 當動詞意為「如流水般湧現、源源不斷地流動」，用在網路情境也正是「串流」。線索是 within minutes of being filmed（在被拍下的幾分鐘之內），強調數量多而且速度極快，正合 stream 的意象。",
+          notes:[{term:"stream", pos:"vi. / n.", gloss:"湧現、源源不斷流動；（網路）串流。n. 溪流、一連串（a stream of complaints 一連串抱怨）", ex:"Messages streamed in all afternoon.", exZh:"訊息整個下午源源不斷湧入。"},
+            {term:"within minutes of + V-ing", pos:"phr.", gloss:"在…的幾分鐘之內（of 是介系詞，後接動名詞）"}]},
+
+        { n:28, kind:"副詞", answer:"G", answerText:"live 現場直播地",
+          stem:"Some gossip channels even broadcast their chases ______ , turning a celebrity's bad day into public entertainment.",
+          translation:"有些八卦頻道甚至把他們的追逐過程現場直播，把名人倒楣的一天變成公眾娛樂。",
+          why:"空格在受詞 their chases 之後，修飾動詞 broadcast，要填副詞。live 當副詞意為「現場直播地」（broadcast live 是固定搭配）。線索是副詞 even（甚至）表示程度升高——不只事後上傳，而是即時播出；而 turning a celebrity's bad day into public entertainment（把名人倒楣的一天變成公眾娛樂）也強調了這種即時性的侵擾。",
+          notes:[{term:"live", pos:"adv. / adj.", gloss:"現場直播地／現場的（broadcast live／a live concert）。此義讀 /laɪv/，與動詞 live /lɪv/（居住）不同。", ex:"The final will be broadcast live on TV.", exZh:"決賽將在電視上現場直播。"},
+            {term:"turn A into B", pos:"phr.", gloss:"把 A 變成 B。句尾的分詞構句 turning ... 說明前面動作造成的結果。"}]},
+
+        { n:29, kind:"名詞", answer:"D", answerText:"toll 損害、代價",
+          stem:"Such constant pursuit can take a heavy ______ on its targets, some of whom grow too anxious to leave home.",
+          translation:"這樣不間斷的追逐會對當事人造成沉重的傷害，有些人甚至焦慮到不敢出門。",
+          why:"take a heavy toll on sb/sth 是固定搭配，意為「對…造成重大的損害」。空格前有 a heavy、後有介系詞 on，結構完全吻合。語意上，關係子句 some of whom grow too anxious to leave home（有些人焦慮到不敢出門）正是這份損害的具體表現。",
+          notes:[{term:"take a toll on", pos:"phr.", gloss:"對…造成損害（take a heavy／terrible toll on sb）。toll 另指「過路費」與「死傷人數」（the death toll）", ex:"Years of stress took a toll on her health.", exZh:"多年的壓力損害了她的健康。"},
+            {term:"too ... to V", pos:"句型", gloss:"太…以致於不能…。too anxious to leave home ＝ 焦慮到無法出門。"}]},
+
+        { n:30, kind:"動詞", answer:"F", answerText:"discriminate 分辨、區別",
+          stem:"Those who learn to ______ between news and gossip are far harder to fool.",
+          translation:"學會分辨新聞與八卦的人，要騙他們就難多了。",
+          why:"空格在不定詞 to 之後、介系詞 between 之前，要填能搭配 between 的動詞。discriminate between A and B 意為「分辨 A 與 B」。語意上，are far harder to fool（更難被騙）說明這個能力的作用是辨別真假，而 news and gossip（新聞與八卦）正是要被區分開的兩者。",
+          notes:[{term:"discriminate between A and B", pos:"phr.", gloss:"分辨 A 與 B。另一用法 discriminate against sb 則是「歧視某人」，意思完全不同。", ex:"Young children cannot discriminate between ads and programs.", exZh:"幼童無法分辨廣告與節目。"},
+            {term:"同義表達整理", pos:"對照", gloss:"本卷第 7 題考 differentiate between，這題考 discriminate between，另有 distinguish between／tell A from B，都是「分辨」的常見說法。"}]}
+      ]
+    }]
+  },
+
+  {
+    id:"mx", label:"四、混合題", score:"12%",
+    instruction:"第 31、32 題各 2%；第 33、34 題每格 2%。答案：31 C　32 C　33 (1) various／diverse (2) guidance　34 (1) sea／ocean temperatures (2) marine heatwaves",
+    groups:[{
+      passage:"Taiwan's coral ecosystems rank among the most diverse in the world, making the country a vital part of global marine biodiversity. The island hosts over 440 species of reef-building corals, a number close to that of Australia's Great Barrier Reef. These lively underwater habitats are often called the “rainforests of the sea” because they shelter a wide variety of marine life and help keep ocean life in balance. This ecological richness gives Taiwan an important role in the global effort to protect marine environments.\n\nHowever, the reefs now face serious threats from human activities such as farming, construction, and industrial development, which release pollutants and sediment into the ocean, harming coral growth. At the same time, rising sea temperatures and more frequent marine heatwaves cause coral bleaching and weaken the structures of these delicate systems. Without effective action, Taiwan could lose not only its coral reefs but also its fisheries, tourism income, and the natural barriers that protect its coastline from waves and storms.\n\nTo address these problems, Taiwan has launched conservation projects combining science and technology. One example is the Chaojing Coral Conservation Center, established by the Delta Electronics Foundation and the National Museum of Marine Science and Technology. As Asia's first zero-carbon coral facility, it runs on solar power and features energy-efficient designs to reduce its environmental impact. Inside, smart systems such as LED lighting controls, water quality monitoring, and coral imaging technologies provide the best conditions for coral colony growth and allow researchers to track coral species closely. The center also grows thousands of living coral fragments, which are later placed into damaged reefs to help restore them. In addition, researchers study heat-tolerant species to identify those most likely to survive rising ocean temperatures, so that they can help build reefs that remain resilient in the face of climate change.\n\nTaiwan's Dongsha Atoll National Park is another site gaining global attention. Natural cooling currents there help bleached corals recover, earning it the name “super reef.” Protecting more areas like Dongsha and expanding marine protected zones could turn Taiwan into a safe haven for tropical marine ecosystems threatened by climate change. Scientific monitoring at this site has provided valuable insights into reef recovery, guiding conservation efforts around the world.",
+      zh:"臺灣的珊瑚生態系名列全球最多樣的行列，使這個國家成為全球海洋生物多樣性的重要一環。這座島嶼擁有超過四百四十種造礁珊瑚，數量接近澳洲大堡礁。這些生機盎然的水下棲地常被稱為「海洋中的雨林」，因為它們庇護著種類繁多的海洋生物，並有助於維持海洋生命的平衡。這份生態上的豐富，賦予臺灣在全球保護海洋環境的努力中一個重要的角色。\n\n然而，這些珊瑚礁如今面臨來自人類活動的嚴重威脅，例如農業、工程建設與工業開發，這些活動把污染物與泥沙排入海洋，危害珊瑚生長。同時，上升的海水溫度與更頻繁的海洋熱浪造成珊瑚白化，並削弱這些脆弱系統的結構。若沒有有效的行動，臺灣失去的不只是珊瑚礁，還有漁業、觀光收入，以及保護海岸線不受浪濤與風暴侵襲的天然屏障。\n\n為了因應這些問題，臺灣已經啟動結合科學與科技的保育計畫。其中一個例子是由台達電子文教基金會與國立海洋科技博物館所設立的潮境珊瑚保種中心。作為亞洲第一座零碳珊瑚設施，它以太陽能運轉，並採用節能設計以降低對環境的衝擊。中心內部的智慧系統，例如 LED 照明控制、水質監測與珊瑚影像技術，為珊瑚群體的生長提供最佳條件，也讓研究人員能密切追蹤珊瑚物種。該中心還培育數千株活體珊瑚斷枝，之後移植到受損的珊瑚礁中協助復育。此外，研究人員研究耐熱物種，以找出最有可能在海溫上升下存活的種類，藉此幫助建立在氣候變遷下依然具有韌性的珊瑚礁。\n\n臺灣的東沙環礁國家公園是另一個獲得全球關注的地點。那裡天然的冷水流有助於白化的珊瑚復原，為它贏得「超級珊瑚礁」之名。保護更多像東沙這樣的區域並擴大海洋保護區，可能讓臺灣成為受氣候變遷威脅的熱帶海洋生態系的安全避難所。在這個地點進行的科學監測，已經為珊瑚礁復育提供了寶貴的洞見，引導著世界各地的保育工作。",
+      questions:[
+        { n:31, kind:"細節理解 (2%)",
+          stem:"What is mentioned about Taiwan's coral ecosystems?",
+          options:{A:"They are home to over 440 species of fish. 它們是四百四十多種魚類的家。",B:"They are more diverse than Australia's Great Barrier Reef. 它們比澳洲大堡礁更多樣。",C:"They are under threat from both human activities and rising sea temperatures. 它們同時受到人類活動與海溫上升的威脅。",D:"Dongsha Atoll National Park has the healthiest coral ecosystem in Asia. 東沙環礁國家公園擁有亞洲最健康的珊瑚生態系。"}, answer:"C",
+          translation:"關於臺灣的珊瑚生態系，文章提到了什麼？",
+          explain:{
+            A:"數字對了，物種類別錯了。原文是 over 440 species of reef-building corals（四百四十多種造礁珊瑚），不是魚類。珊瑚是動物，但不是魚。",
+            B:"程度被誇大了。原文寫 a number close to that of Australia's Great Barrier Reef（數量接近澳洲大堡礁），close to 是「接近」而非「超過」。第一句的 rank among the most diverse（名列最多樣之列）也只是說它屬於前段班，沒有說它第一。",
+            C:"第二段同時列出兩類威脅：human activities such as farming, construction, and industrial development（農業、建設、工業開發等人類活動）與 rising sea temperatures and more frequent marine heatwaves（上升的海溫與更頻繁的海洋熱浪）。both ... and ... 完全對應原文的兩個層面。",
+            D:"原文只說東沙 is another site gaining global attention（是另一個獲得全球關注的地點）並贏得 super reef 之名，從未與亞洲其他珊瑚礁比較健康程度。「最…」的說法在原文找不到依據。"
+          },
+          notes:[
+            {term:"close to vs. more than", pos:"技巧", gloss:"閱讀測驗最常見的陷阱就是把「接近」改寫成「超過」。看到選項出現比較級或最高級，一定回原文確認程度。"},
+            {term:"reef-building corals", pos:"n.", gloss:"造礁珊瑚。coral bleaching 珊瑚白化／coral colony 珊瑚群體／coral fragment 珊瑚斷枝"}
+          ]},
+
+        { n:32, kind:"細節判讀 NOT 題 (2%)",
+          stem:"Which is NOT a conservation effort made by the Chaojing Coral Conservation Center?",
+          options:{A:"It produces no carbon emissions. 它不產生碳排放。",B:"It makes use of solar power and LED lighting. 它運用太陽能與 LED 照明。",C:"It helps restore damaged reefs by changing coral genes. 它透過改變珊瑚基因來協助復育受損的珊瑚礁。",D:"It supports the study of species that can survive warmer sea waters. 它支持研究能在較溫暖海水中存活的物種。"}, answer:"C",
+          translation:"下列哪一項不是潮境珊瑚保種中心所做的保育工作？",
+          explain:{
+            A:"原文有提到。第三段寫 As Asia's first zero-carbon coral facility（亞洲第一座零碳珊瑚設施），zero-carbon 就是不產生碳排放。",
+            B:"原文有提到。it runs on solar power（以太陽能運轉）與 smart systems such as LED lighting controls（LED 照明控制等智慧系統）兩處都寫得很明確。",
+            C:"這是原文沒有提到的作法。原文說該中心 grows thousands of living coral fragments, which are later placed into damaged reefs（培育數千株活體珊瑚斷枝，之後移植到受損的珊瑚礁），用的是「培育與移植」的方式。另外雖然有 study heat-tolerant species（研究耐熱物種），但那是「找出本來就耐熱的種類」，不是去「改變基因」。NOT 題的答案就在這裡。",
+            D:"原文有提到。researchers study heat-tolerant species to identify those most likely to survive rising ocean temperatures（研究耐熱物種以找出最可能在海溫上升下存活的種類），與選項完全對應。"
+          },
+          notes:[
+            {term:"NOT 題的作法", pos:"技巧", gloss:"NOT 題要逐一回原文核對，把「找得到」的三個打勾，剩下那個就是答案。切勿憑印象判斷合不合理——基因改造聽起來很科學，但原文沒說就是沒說。"},
+            {term:"heat-tolerant", pos:"adj.", gloss:"耐熱的（tolerant 能容忍的；n. tolerance）。注意「篩選既有的耐熱品種」與「基因改造」是兩回事。"}
+          ]},
+
+        { n:33, kind:"單詞填空 (2% each)",
+          stem:"請從文章中找出最適當的單詞填入空格，並視句型結構需要做適當的字形變化。每格限填一個單詞。\n\nCoral reefs are often called “rainforests of the sea.” Like the rainforests on land, these underwater habitats provide shelter for ⑴______ kinds of marine creatures and contribute to a balanced ocean ecosystem. In Taiwan, Dongsha Atoll National Park has gained global attention as a “super reef,” where natural cooling currents help bleached corals recover. Scientific monitoring at the site has offered valuable insights into reef recovery and provided ⑵______ for conservation efforts worldwide.",
+          answers:[
+            {k:"⑴", w:"various / diverse", note:"空格後是 kinds of（各種），需要形容詞修飾。原文對應句是 they shelter a wide variety of marine life（庇護種類繁多的海洋生物），把名詞 variety 改成形容詞 various 即可；也可用第一句的 diverse（most diverse in the world）。"},
+            {k:"⑵", w:"guidance", note:"動詞 provided 後面需要受詞，所以要填名詞。原文對應句是 guiding conservation efforts around the world（引導世界各地的保育工作），把動詞 guiding 改成名詞 guidance。注意 guidance 是不可數名詞，前面不加冠詞。"}
+          ],
+          translation:"珊瑚礁常被稱為「海洋中的雨林」。就像陸地上的雨林，這些水下棲地為各種海洋生物提供庇護，並有助於形成平衡的海洋生態系。在臺灣，東沙環礁國家公園以「超級珊瑚礁」之名獲得全球關注，那裡天然的冷水流有助於白化的珊瑚復原。在這個地點進行的科學監測，已為珊瑚礁復育提供了寶貴的洞見，也為世界各地的保育工作提供了指引。",
+          why:"這類題目的解法固定三步：先找出摘要句在原文中的對應段落，再找出意思相同的字，最後依空格的詞性做字形變化。本題兩格都需要變換詞性——variety（名詞）變 various（形容詞）、guiding（動詞）變 guidance（名詞），這正是題目所說的「視句型結構需要做適當的字形變化」。",
+          notes:[
+            {term:"variety / various / vary", pos:"詞類變化", gloss:"n. variety 多樣性（a wide variety of）／adj. various 各種的／v. vary 不同。摘要填空最愛考這組轉換。", ex:"a wide variety of species ＝ various species", exZh:"種類繁多的物種"},
+            {term:"guide / guidance", pos:"詞類變化", gloss:"v. guide 引導／n. guidance 指引（不可數）／n. guide 指南、導遊（可數）。provide guidance for sb 為某人提供指引。"}
+          ]},
+
+        { n:34, kind:"原文摘錄 (2% each)",
+          stem:"According to the article, what are the major causes of coral bleaching? Please COPY the words or phrases from the passage.\n\nA rise in ⑴______ and ⑵______.",
+          answers:[
+            {k:"⑴", w:"sea / ocean temperatures", note:"原文第二段：rising sea temperatures and more frequent marine heatwaves cause coral bleaching。因為題目的句型是 A rise in ___，所以把 rising（形容詞）還原成名詞 sea temperatures 填入。第三段的 rising ocean temperatures 也可以。"},
+            {k:"⑵", w:"marine heatwaves", note:"同一句的第二個原因。原文是 more frequent marine heatwaves，而題目句型 A rise in ___ 已經包含「增加」的意思，所以只需抄 marine heatwaves 這個名詞片語。"}
+          ],
+          translation:"根據本文，造成珊瑚白化的主要原因是什麼？請從文章中抄錄字詞。白化主因是⑴海水溫度與⑵海洋熱浪的增加。",
+          why:"題目明確要求 COPY the words or phrases from the passage（從文章抄錄字詞），所以不能自己改寫同義字。關鍵是先鎖定原文中出現 cause coral bleaching 的那一句，它的主詞就是答案。要注意題目句型是 A rise in ___ and ___，兩格都要填名詞，所以原文的 rising 與 more frequent 這兩個修飾語不必抄進去。",
+          notes:[
+            {term:"抄錄題的兩個要點", pos:"技巧", gloss:"① 一字不改地抄原文 ② 但要配合題目句型調整詞性或刪掉多餘的修飾語。本題的 A rise in 已含「上升」之意，再抄 rising 就重複了。"},
+            {term:"coral bleaching", pos:"n.", gloss:"珊瑚白化：海溫過高導致珊瑚排出共生藻而變白、失去養分來源的現象。"}
+          ]}
+      ]
+    }]
+  },
+
+  {
+    id:"tr", label:"五、翻譯", score:"13%",
+    instruction:"斜線為計分單位。第 35 題 3%、第 36 題 4%、第 37 題 3%、第 38 題 3%。",
+    groups:[{
+      questions:[
+        { n:35, kind:"lest / for fear that (3%)",
+          stem:"然而，我們在過馬路時最好不要使用手機以免被車子撞。",
+          answers:[
+            {k:"⑴", w:"However, we had better not use smartphones", note:"「最好不要」用 had better not ＋ 原形動詞。注意 had better 的否定是把 not 放在 better 之後，不是 had not better。"},
+            {k:"⑵", w:"when crossing the road", note:"「在過馬路時」。副詞子句 when we are crossing the road 省略主詞與 be 動詞後變成 when crossing，這是最簡潔的寫法；寫完整的子句也對。"},
+            {k:"⑶", w:"lest we (should) get / be hit by a car　或　for fear that we would / should / might get hit by a car", note:"「以免」。lest 後面接原形動詞或 should ＋ 原形（假設語氣），而且 lest 本身已含否定，不可再加 not。for fear that 後面則接 would／should／might ＋ 原形。"}
+          ],
+          translation:"然而，我們在過馬路時最好不要使用手機以免被車子撞。",
+          why:"本題三個計分點各考一個重點：had better not 的否定位置、分詞構句的省略，以及 lest／for fear that 的假設語氣。最容易失分的是在 lest 後面多加一個 not——lest 的字義就是「以免、免得」，已經是否定，再加 not 會變成雙重否定。",
+          notes:[
+            {term:"lest + S + (should) V", pos:"句型", gloss:"以免、免得（lest 本身含否定，不可再加 not）。同義：for fear that／in case／so that ... not。", ex:"Speak softly lest you (should) wake the baby.", exZh:"說話輕一點，以免吵醒嬰兒。"},
+            {term:"had better (not) V", pos:"句型", gloss:"最好（不要）做某事。否定是 had better not V；縮寫為 'd better。語氣比 should 更強，帶有警告意味。"}
+          ]},
+
+        { n:36, kind:"關係代名詞 (4%)",
+          stem:"最後但同樣重要的是，我們應該留意過多螢幕時間對我們的眼睛和健康所造成的傷害。",
+          answers:[
+            {k:"⑴", w:"Last but not least,", note:"「最後但同樣重要的是」。這是固定說法，常用於條列的最後一項，後面加逗號。"},
+            {k:"⑵", w:"we should watch out for the harm", note:"「留意」用 watch out for（留意、小心）。「傷害」用 harm（不可數名詞），前面加定冠詞 the 因為後面有關係子句限定。"},
+            {k:"⑶", w:"(which / that) too much screen time", note:"關係代名詞 which 或 that 當 causes 的受詞，可以省略。「過多螢幕時間」是 too much screen time，screen time 為不可數，所以用 much 不用 many。"},
+            {k:"⑷", w:"causes to our eyes and health", note:"cause harm to sb/sth ＝ 對…造成傷害。因為 harm 已被提到前面當先行詞，所以這裡只剩 causes to our eyes and health。主詞 too much screen time 是單數，動詞加 s。"}
+          ],
+          translation:"最後但同樣重要的是，我們應該留意過多螢幕時間對我們的眼睛和健康所造成的傷害。",
+          why:"本題的難點在關係子句的結構。中文「過多螢幕時間對眼睛和健康造成的傷害」要先還原成兩句：we should watch out for the harm ＋ too much screen time causes the harm to our eyes and health。把第二句的 the harm 用關係代名詞取代並提到句首，就得到 the harm (which) too much screen time causes to our eyes and health。注意 to 不可漏掉，因為原本的搭配是 cause harm to sth。",
+          notes:[
+            {term:"cause harm to", pos:"phr.", gloss:"對…造成傷害（do harm to 亦可）。harm 為不可數名詞，不加 s。", ex:"Too much sugar causes harm to your teeth.", exZh:"過多的糖會對你的牙齒造成傷害。"},
+            {term:"watch out for", pos:"phr. v.", gloss:"留意、小心（＝look out for／be careful of）。本卷第三大題也出現過 look out for 的概念。"}
+          ]},
+
+        { n:37, kind:"倍數表達 (3%)",
+          stem:"日本的國土面積大約是南韓的四倍。",
+          answers:[
+            {k:"⑴", w:"Japan's land area", note:"「日本的國土面積」。用所有格 Japan's 或 The land area of Japan 都可以。"},
+            {k:"⑵", w:"is about four times", note:"「大約是四倍」。倍數用 four times，前面加 about 表示約略。注意中文的「四倍」在英文就是 four times，不要寫成 four times more（那是五倍）。"},
+            {k:"⑶", w:"that of South Korea", note:"「南韓的（國土面積）」。用代名詞 that 代替前面的單數名詞 land area，避免重複。若前面是複數名詞則用 those。"}
+          ],
+          translation:"日本的國土面積大約是南韓的四倍。",
+          why:"本題的關鍵是最後一格的 that。比較兩個對象的同一項屬性時，第二次提到那個屬性要用 that（單數）或 those（複數）代替，不能直接寫 South Korea——那會變成「日本的面積是南韓這個國家的四倍」，比較的對象不對等。本卷第一大題第 4 題的 contrast to that in the capital 用的是同一個規則。",
+          notes:[
+            {term:"A is N times that of B", pos:"句型", gloss:"A 是 B 的 N 倍。其他寫法：A is N times as large as B／A is N times the size of B。", ex:"Its population is three times that of Taipei.", exZh:"它的人口是臺北的三倍。"},
+            {term:"that / those 代替重複的名詞", pos:"文法", gloss:"比較句中避免重複名詞：單數用 that，複數用 those。這是中譯英與文法題的高頻考點。"}
+          ]},
+
+        { n:38, kind:"讓步介系詞 (3%)",
+          stem:"儘管面積的差異，兩國都以受歡迎的流行文化產業聞名。",
+          answers:[
+            {k:"⑴", w:"Despite the difference in size,", note:"「儘管」用介系詞 Despite 或 In spite of，後面接名詞片語。注意 Despite 後面不加 of，這是最常見的錯誤。"},
+            {k:"⑵", w:"both countries are known for", note:"「兩國都以…聞名」。be known for ＝ 以（特色、產物）聞名。主詞 both countries 是複數，動詞用 are。"},
+            {k:"⑶", w:"their popular pop culture industries", note:"「受歡迎的流行文化產業」。pop culture 為流行文化，industries 用複數呼應 both countries；所有格 their 指兩國各自的產業。"}
+          ],
+          translation:"儘管面積的差異，兩國都以受歡迎的流行文化產業聞名。",
+          why:"本題兩個重點：Despite 是介系詞，後面只能接名詞片語（the difference in size），不能接子句，也絕對不加 of；以及 be known for 與 be known as 的區別——for 接「聞名的原因或特色」，as 接「被稱為的身分」。這裡講的是因產業而聞名，所以用 for。",
+          notes:[
+            {term:"despite / in spite of / although", pos:"辨析", gloss:"Despite ＋ N（不加 of）／In spite of ＋ N／Although ＋ 子句。三者意思相同但接的東西不同。", ex:"Despite the rain, the game went on.", exZh:"儘管下雨，比賽仍繼續。"},
+            {term:"be known for / as / to", pos:"辨析", gloss:"be known for 以…（特色）聞名／be known as 被稱為…（身分）／be known to 為…所知。三者不可混用。"}
+          ]}
+      ]
+    }]
+  }
+  ]
+};
+
+/* ==========================================================================
+   ②  以下為程式碼，一般情況不需要修改。
+   ========================================================================== */
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const wordOf = q => q.options ? q.options[q.answer] : (q.answerText || '');
+const allQ = [];
+EXAM.sections.forEach(s => s.groups.forEach(g => g.questions.forEach(q => allQ.push(q))));
+const findQ = n => allQ.find(q => String(q.n) === String(n));
+
+document.getElementById('brand').textContent = EXAM.brand;
+document.getElementById('examTitle').textContent = EXAM.title;
+document.getElementById('examMeta').textContent = EXAM.meta;
+
+let noteCount = 0;
+allQ.forEach(q => noteCount += (q.notes || []).length);
+
+const nav = document.getElementById('nav');
+EXAM.sections.forEach(s => {
+  const a = document.createElement('a');
+  a.className = 'chip'; a.href = '#sec-' + s.id; a.textContent = s.label.replace(/^[一二三四五六]、/, m => m);
+  nav.appendChild(a);
+});
+const noteChip = document.createElement('a');
+noteChip.className = 'chip'; noteChip.href = '#side'; noteChip.textContent = '重點表 ' + noteCount;
+nav.appendChild(noteChip);
+const toggleAll = document.createElement('button');
+toggleAll.className = 'chip solid'; toggleAll.textContent = '全部展開';
+nav.appendChild(toggleAll);
+
+function renderPassage(g, i, sid) {
+  let html = esc(g.passage);
+  g.questions.forEach(q => {
+    if (!q.evidence) return;
+    const t = esc(q.evidence);
+    if (html.includes(t)) html = html.replace(t, `<span class="hl ev" data-ev="${q.n}">${t}</span>`);
+  });
+  html = html.replace(/__(\d+)__/g, (m, n) =>
+    `<button class="blank" data-blank="${n}" aria-label="第 ${n} 題空格">${n}</button>`);
+  const body = '<div class="passage">' +
+    html.split(/\n{2,}/).map(p => '<p>' + p.replace(/\n/g, ' ') + '</p>').join('') + '</div>';
+  if (!g.zh) return body;
+  const id = sid + '-' + i;
+  return body +
+    `<button class="zhbtn" data-zh="${id}">全文中譯</button>` +
+    `<div class="zhbox" id="zh-${id}">` +
+      g.zh.split(/\n{2,}/).map(p => '<p>' + esc(p).replace(/\n/g, ' ') + '</p>').join('') +
+    '</div>';
+}
+
+function renderQ(q) {
+  const parts = [];
+  if (q.options) {
+    const ks = Object.keys(q.options);
+    parts.push('<div class="opts">' + ks.map(k =>
+      `<div class="opt"><span class="opt-k">(${k})</span><span>${esc(q.options[k])}</span></div>`).join('') + '</div>');
+  }
+  const head = `<div class="q-tag"><span class="q-n">${String(q.n).padStart(2,'0')}</span><span class="q-kind">${esc(q.kind || '')}</span></div>` +
+    (q.prompt ? `<p class="prompt">${esc(q.prompt)}</p>` : '') +
+    (q.stem ? `<p class="stem">${esc(q.stem).replace(/\n/g,'<br>')}</p>` : '');
+
+  let ans = '';
+  if (q.answers) {
+    ans = '<ul class="fills">' + q.answers.map(a =>
+      `<li class="fill"><span class="fill-k">${esc(a.k)}</span><span class="fill-w hl" data-ansmulti>${esc(a.w)}</span><span class="fill-n">${esc(a.note || '')}</span></li>`).join('') + '</ul>';
+  } else {
+    const label = q.options ? `(${q.answer}) ${esc(wordOf(q))}` :
+      (q.answer ? `(${q.answer}) ${esc(q.answerText)}` : esc(q.answerText));
+    ans = `<p class="ans"><span class="ans-k">答案</span><span class="ans-v hl" data-ans="${q.n}">${label}</span></p>`;
+  }
+
+  let expl = '';
+  if (q.explain) {
+    expl = '<ul class="lines">' + Object.keys(q.options).map(k => {
+      const right = q.multi ? q.multi.includes(k) : k === q.answer;
+      return `<li class="line ${right ? 'right' : 'wrong'}"><span class="line-k">(${k})</span><span>${esc(q.explain[k] || '')}</span></li>`;
+    }).join('') + '</ul>';
+  }
+  const why = q.why ? `<p class="why">${esc(q.why)}</p>` : '';
+  const sample = q.sample ? `<div class="sample"><p class="note-h">參考範文</p>` +
+    q.sample.split(/\n{2,}/).map(p => `<p>${esc(p).replace(/\n/g,' ')}</p>`).join('') + '</div>' : '';
+  const evid = q.evidence ? `<p class="evid"><span>文中依據</span>${esc(q.evidence)}</p>` : '';
+  const notes = (q.notes || []).length ? `<div class="note"><p class="note-h">重點整理</p>` +
+    q.notes.map(nt => `<p class="note-i"><span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span><span class="gloss">${esc(nt.gloss || '')}</span>` +
+      (nt.ex ? `<span class="ex">${esc(nt.ex)}<i>${esc(nt.exZh || '')}</i></span>` : '') + '</p>').join('') + '</div>' : '';
+
+  return `<article class="q" id="q-${q.n}" data-n="${q.n}">
+    <div class="q-top">${head}${parts.join('')}
+      <button class="reveal" aria-expanded="false" aria-controls="body-${q.n}">看詳解</button>
+    </div>
+    <div class="body" id="body-${q.n}">
+      ${ans}${q.translation ? `<p class="zh">${esc(q.translation)}</p>` : ''}${expl}${why}${evid}${sample}${notes}
+    </div>
+  </article>`;
+}
+
+document.getElementById('main').innerHTML = EXAM.sections.map((s, i) => `
+  <section class="sec" id="sec-${s.id}">
+    <div class="sec-head">
+      <span class="sec-num">${String(i+1).padStart(2,'0')}</span>
+      <h2 class="sec-label">${esc(s.label)}</h2>
+      <span class="sec-score">${esc(s.score || '')}</span>
+    </div>
+    ${s.instruction ? `<p class="sec-inst">${esc(s.instruction)}</p>` : ''}
+    ${s.bank ? `<div class="bank${s.bankWide ? ' wide' : ''}">${Object.keys(s.bank).map(k =>
+      `<div class="bank-i" data-bank="${k}"><span>(${k})</span>${esc(s.bank[k])}</div>`).join('')}</div>` : ''}
+    ${s.groups.map((g, gi) => (g.passage ? renderPassage(g, gi, s.id) : '') + g.questions.map(renderQ).join('')).join('')}
+  </section>`).join('');
+
+const items = [];
+allQ.forEach(q => (q.notes || []).forEach(nt => items.push({ ...nt, n: q.n })));
+document.getElementById('side').innerHTML = `
+  <p class="side-h">Notes</p>
+  <p class="side-t">本卷重點 ${items.length} 則</p>
+  <ul class="card-list">${items.map(nt => `
+    <li class="card-item"><a href="#q-${nt.n}">
+      <span class="jump">第 ${nt.n} 題</span>
+      <span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span>
+      <div class="gloss">${esc(nt.gloss || '')}</div>
+    </a></li>`).join('')}</ul>
+  <p class="side-note">點任一則可跳到出處題目。用瀏覽器列印（Ctrl／⌘ + P）會自動展開全部詳解與中譯，可直接印成講義。</p>`;
+
+document.getElementById('foot').textContent = `共 ${allQ.length} 題 · ${EXAM.footer}`;
+
+function setOpen(card, open) {
+  card.classList.toggle('open', open);
+  const btn = card.querySelector('.reveal');
+  btn.setAttribute('aria-expanded', open);
+  btn.firstChild.nodeValue = open ? '收合詳解' : '看詳解';
+  const n = card.dataset.n;
+  card.querySelectorAll('.hl').forEach(h => h.classList.toggle('on', open));
+  const ev = document.querySelector(`[data-ev="${n}"]`);
+  if (ev) ev.classList.toggle('on', open);
+  const q = findQ(n);
+  if (q && q.answer && q.answerText) {
+    const bi = document.querySelector(`[data-bank="${q.answer}"]`);
+    if (bi) bi.classList.toggle('used', open);
+  }
+  const bl = document.querySelector(`[data-blank="${n}"]`);
+  if (bl) {
+    if (open) {
+      bl.classList.add('filled');
+      bl.innerHTML = `<sup>${n}</sup><span class="hl">${esc(wordOf(q))}</span>`;
+      requestAnimationFrame(() => bl.querySelector('.hl').classList.add('on'));
+    } else {
+      bl.classList.remove('filled');
+      bl.textContent = n;
+    }
+  }
+}
+document.addEventListener('click', e => {
+  const rv = e.target.closest('.reveal');
+  if (rv) { const c = rv.closest('.q'); setOpen(c, !c.classList.contains('open')); return; }
+  const zb = e.target.closest('.zhbtn');
+  if (zb) { zb.classList.toggle('on'); document.getElementById('zh-' + zb.dataset.zh).classList.toggle('on'); return; }
+  const bl = e.target.closest('.blank');
+  if (bl) {
+    const c = document.getElementById('q-' + bl.dataset.blank);
+    if (!c.classList.contains('open')) setOpen(c, true);
+    c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+toggleAll.addEventListener('click', () => {
+  const open = toggleAll.textContent === '全部展開';
+  document.querySelectorAll('.q').forEach(c => setOpen(c, open));
+  toggleAll.textContent = open ? '全部收合' : '全部展開';
+});
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.q').forEach(c => setOpen(c, true));
+  document.querySelectorAll('.zhbox').forEach(b => b.classList.add('on'));
+  toggleAll.textContent = '全部收合';
+});
+</script>
+</body>
+</html>
